@@ -3,10 +3,12 @@ import { AppController } from './app.controller';
 import { AppService } from './app.service';
 import { CambioModule } from './cambio/cambio.module';
 import { MongooseModule } from '@nestjs/mongoose';
+import { ScheduleModule } from '@nestjs/schedule';
 
 @Module({
   imports: [
     MongooseModule.forRoot('mongodb://localhost:8717/cambio'),
+    ScheduleModule.forRoot(),
     CambioModule
   ],
   controllers: [AppController],

@@ -1,5 +1,5 @@
 import mongoose, { Document } from "mongoose";
-import { OperacionCambio } from "../models/operacion-cambio.model";
+import { OperacionCambio } from "../models";
 
 export type OperacionCambioDocument = OperacionCambio & Document;
 

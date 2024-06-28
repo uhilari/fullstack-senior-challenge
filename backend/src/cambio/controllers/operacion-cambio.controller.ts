@@ -1,5 +1,5 @@
 import { Body, Controller, Post } from "@nestjs/common";
-import { CreateOperacionCambioDto } from "../dtos/operacion-cambio.request";
+import { CreateOperacionCambioDto } from "../dtos/operacion-cambio.Dtos";
 import { OperacionCambioService } from "../services/operacion-cambio.service";
 
 @Controller("operacion-cambio")
