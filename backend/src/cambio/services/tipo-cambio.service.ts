@@ -23,8 +23,8 @@ export class TipoCambioService {
         this.logger.log(tc);
         let ultimoTC = await this.tcModel.findOne({ fecha: tc.fecha });
         if (ultimoTC) {
-            this.logger.log(`actualizando '${ultimoTC._id}'`);
-            await this.tcModel.updateOne({ _id: ultimoTC._id }, { compra: tc.compra, venta: tc.venta });
+            this.logger.log(`actualizando '${ultimoTC.id}'`);
+            await this.tcModel.updateOne({ id: ultimoTC.id }, { compra: tc.compra, venta: tc.venta });
         }
         else {
             this.logger.log('creando nuevo tc');
