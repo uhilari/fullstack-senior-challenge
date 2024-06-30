@@ -5,7 +5,12 @@ import httpClient from '../utils/api'
 const defaultData = {
     monto: 0,
     monedaOrigen: 'PEN',
-    monedaDestino: 'USD'
+    monedaDestino: 'USD',
+    errores: {
+        monto: { valido: true },
+        monedaOrigen: { valido: true },
+        monedaDestino: { valido: true }
+    }
   }
 
 export const useOperacionStore = defineStore('operacion', {
@@ -25,6 +30,12 @@ export const useOperacionStore = defineStore('operacion', {
       catch (error) {
         console.log(error);
       }
+    },
+    setMonto(val) {
+        this.monto = val;
+    },
+    setError(err) {
+        this.errores = err;
     },
     reset() {
         this.monto = defaultData.monto;
