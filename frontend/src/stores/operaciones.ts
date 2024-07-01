@@ -1,10 +1,21 @@
 import { ref, computed } from 'vue'
 import { defineStore } from 'pinia'
+import moment from 'moment'
 import httpClient from '../utils/api' 
+
+export interface OperacionItem {
+  monedaOrigen: string;
+  monedaDestino: string;
+  monto: number;
+  montoCambiado: number;
+  tipoCambio: number;
+}
+
+const dataInitial: OperacionItem[] = [];
 
 export const useOperacionesStore = defineStore('operaciones', {
   state: () => ({
-    operaciones: [],
+    operaciones: dataInitial,
     fechaInicio: moment().format('yyyy-MM-DD'),
     fechaFin: moment().format('yyyy-MM-DD')
   }),
@@ -16,7 +27,7 @@ export const useOperacionesStore = defineStore('operaciones', {
       }
       catch (error) {
         console.log(error);
-        this.operaciones = [];
+        this.operaciones = dataInitial;
       }    
     }
   }

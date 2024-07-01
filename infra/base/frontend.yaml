@@ -1,0 +1,31 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: kmb-front
+spec:
+  selector:
+    matchLabels:
+      app: kmb-front
+  template:
+    metadata:
+      labels:
+        app: kmb-front
+    spec:
+      containers:
+        - name: kmb-front
+          image: uhilari/kambista-frontend:0.0.5
+          resources:
+            limits:
+              memory: "128Mi"
+              cpu: "500m"
+          ports:
+            - containerPort: 80
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: kmb-front-lb
+spec:
+  selector:
+    app: kmb-front
+  type: LoadBalancer

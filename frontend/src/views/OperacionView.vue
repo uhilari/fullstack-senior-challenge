@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { useOperacionStore } from "../stores/operacion.ts"
+import { useOperacionStore } from "../stores/operacion"
 
 const store = useOperacionStore();
 
@@ -8,13 +8,13 @@ const validarMonto = () => {
         valido: true,
         msg: ''
     };
-    let monto = parseFloat(store.monto);
+    let monto = parseFloat(store.monto as any);
     if (isNaN(monto) || monto <= 0) {
         result.msg = "El monto no es válido";
         result.valido = false;
     }
     else {
-        store.monto = monto.toFixed(2);
+        store.monto = parseFloat(monto.toFixed(2));
     }
     return result;
 }
@@ -45,7 +45,6 @@ const validar = () => {
         monedaOrigen: validarMonedaOrigen(),
         monedaDestino: validarMonedaDestino()
     };
-    console.log(err);
     store.setError(err);
     return err.monto.valido && err.monedaOrigen.valido && err.monedaDestino.valido;
 }

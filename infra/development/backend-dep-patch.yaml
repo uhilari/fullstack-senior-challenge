@@ -1,0 +1,17 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: kmb-back
+spec:
+  selector:
+    matchLabels:
+      app: kmb-back
+  template:
+    spec:
+      containers:
+        - name: kmb-back
+          env:
+            - name: BD_URL
+              value: "mongodb://kdev-mongo-svc:27017/cambio"
+            - name: TC_SUNAT
+              value: "https://api.apis.net.pe/v1/tipo-cambio-sunat"

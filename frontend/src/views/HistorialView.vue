@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import { onMounted } from "vue";
-import { useOperacionesStore } from '../stores/operaciones.ts';
+import { useOperacionesStore } from '../stores/operaciones';
 
 const store = useOperacionesStore();
 

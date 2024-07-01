@@ -7,7 +7,7 @@ import { ScheduleModule } from '@nestjs/schedule';
 
 @Module({
   imports: [
-    MongooseModule.forRoot('mongodb://localhost:8717/cambio'),
+    MongooseModule.forRoot(process.env.BD_URL),
     ScheduleModule.forRoot(),
     CambioModule
   ],

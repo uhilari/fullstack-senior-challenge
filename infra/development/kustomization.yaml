@@ -15,3 +15,6 @@ labels:
       env: dev
 patches:
   - path: basedatos-patch.yaml
+  - path: backend-dep-patch.yaml
+  - path: backend-lb-patch.yaml
+  - path: frontend-patch.yaml

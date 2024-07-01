@@ -1,0 +1,49 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: kmb-back
+spec:
+  selector:
+    matchLabels:
+      app: kmb-back
+  template:
+    metadata:
+      labels:
+        app: kmb-back
+    spec:
+      containers:
+        - name: kmb-back
+          image: uhilari/kambista-backend:0.0.2
+          resources:
+            limits:
+              memory: "128Mi"
+              cpu: "500m"
+          ports:
+            - containerPort: 3000
+          env:
+            - name: BD_URL
+              value: "mongodb://localhost:8717/cambio"
+            - name: TC_SUNAT
+              value: "https://api.apis.net.pe/v1/tipo-cambio-sunat"
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: kmb-back-svc
+spec:
+  selector:
+    app: kmb-back
+  ports:
+    - protocol: TCP
+      port: 80
+      targetPort: 3000
+      name: http
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: kmb-back-lb
+spec:
+  selector:
+    app: kmb-back
+  type: LoadBalancer
