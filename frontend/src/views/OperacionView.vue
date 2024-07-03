@@ -14,7 +14,14 @@ const validarMonto = () => {
         result.valido = false;
     }
     else {
-        store.monto = parseFloat(monto.toFixed(2));
+        let strs = monto.toFixed(2).split('.');
+        if (strs.length > 7) {
+            result.msg = "El monto no es válido";
+            result.valido = false;
+        }
+        else {
+            store.monto = parseFloat(monto.toFixed(2));
+        }
     }
     return result;
 }
